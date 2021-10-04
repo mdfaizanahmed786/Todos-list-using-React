@@ -1,8 +1,9 @@
-import React ,{ useState } from 'react';
+import React ,{ useState, useEffect} from 'react';
 import '../App.css';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Card from './Card.js';
 
+//Styling buttton
 const btnstyle={
 	fill:'#0d6efd',
 	fontSize:'4.1rem',
@@ -31,8 +32,12 @@ const makeChanges=()=>{
 		
 		}
 		//Adding spread operator to add previous state data, so that we can append previous data in map method
+		if(!title || !note) {
+			alert("Please enter the details");
+			}
+			else{
 	setData([...data, tododata]);
-	
+	}
 }
 
 	

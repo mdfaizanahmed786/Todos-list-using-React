@@ -13,3 +13,12 @@
 			margin:10px 5px 10px 40px;
 			
 			}
+			
+			.btn-group{
+				
+				padding:10px;
+				display:flex;
+				
+				justify-content:space-evenly;
+				
+				}
