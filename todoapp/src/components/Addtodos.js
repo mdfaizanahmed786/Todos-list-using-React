@@ -1,5 +1,6 @@
 import React ,{ useState, useEffect} from 'react';
 import '../App.css';
+import {v4 as uuidv4} from 'uuid';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 
@@ -19,39 +20,65 @@ const btnstyle={
  	
  	const [title, updateTitle]=useState('');
      const [note, updateNote]=useState("");
+     
+     
+     //UseState for updating notes onclicking update button
+     const [newTitle, updtnewTitle]=useState('');
+     const [newNote, updtnewNote]=useState('');
+     
+     
        //Adding data to an empty array i.e tododata(below)
      const [data, setData]=useState([]);
     
+    const[noteid , editnoteid]=useState('');
 const makeChanges=()=>{
 	//Adding an object to updateNote useEffect
 	const tododata={
-		id:new Date().getTime().toString(),
+		id:uuidv4(),
 		title:title,
 		note:note
 		}
 		//Adding spread operator to add previous state data using spread operator, so that we can append previous data in map method
 		if(!title || !note) {
-			alert("Please enter the details");
+			alert("You cannot leave this empty");
 			}
 			else{
 	setData([...data, tododata]);
 	updateTitle('');
 	updateNote('');
 	}
+	
+	
 }
 
 const deleteNotes=(index)=>{
-	
+	//Deleting the current selected note and returning other remaining notes
 	const updatedTodo=data.filter((currElem)=>{
 		
+return currElem.id !== index;
 		
-			
-			return currElem.id !== index;
-			
 		});
 	setData(updatedTodo);
 	
+	
 	}
+	
+	
+	const editNote=(id)=>{
+
+const data_note=prompt("Enter this value");
+const updateNotie=data.map((currElem)=>{
+	
+	if(currElem.id===id){
+		
+		currElem.title=data_note
+		}
+	return currElem;
+	
+	});
+
+setData(updateNotie);
+		}
 	
 	return (
 	<React.Fragment>
@@ -66,7 +93,7 @@ const deleteNotes=(index)=>{
   </div>
   <AddCircleIcon style={btnstyle} onClick={makeChanges}/>
   
-  {/*Boostrap Modal code:*/}
+
 
 
 
@@ -84,53 +111,29 @@ const deleteNotes=(index)=>{
     <h5 className="card-title">{currElem.title}</h5>
     <p className="card-text">{currElem.note}</p>
     
-    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Edit <i className="fa fa-edit"  aria-hidden="true">< /i></button>
+    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={()=>editNote(currElem.id)}>Edit <i className="fa fa-edit"  aria-hidden="true">< /i></button>
     
     <button className="btn btn-danger" onClick={()=>deleteNotes(currElem.id)} style={{margin:'10px'}}>Delete <i className="fa fa-trash" aria-hidden="true"></i></button>
     
   </div>
 </div>
-
-
-
-
 </>
 )
 })
- }
- 
-   
-<div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog" role="document">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Edit your note</h5>
-        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
-          
-        </button>
-      </div>
-      <div className="modal-body">
-        <form>
-          <div className="form-group">
-            <label htmlFor="recipient-name" className="col-form-label">Title</label>
-            <input type="text" className="form-control" id="recipient-name"/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="message-text" className="col-form-label">Note</label>
-            <textarea className="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
+}
 
+
+{/*
+	data.map((currElem)=>{
+		p
 
   
+)
+})
+*/}
+ 
+   
+
   
   
 </React.Fragment>
