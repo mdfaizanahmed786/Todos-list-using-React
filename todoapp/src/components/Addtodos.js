@@ -1,18 +1,19 @@
 import React ,{ useState, useEffect} from 'react';
 import '../App.css';
 import {v4 as uuidv4} from 'uuid';
+//import Box from '@material-ui/material/Box';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 
 //Styling buttton
 const btnstyle={
-	fill:'#0d6efd',
+fill:'#0d6efd',
 	fontSize:'4.1rem',
 	position:'fixed',
 	top:'85%',
 	left:'78%',
-	zIndex:'1'
 	
+	zIndex:'1',
 	}
 	
 
@@ -22,15 +23,12 @@ const btnstyle={
      const [note, updateNote]=useState("");
      
      
-     //UseState for updating notes onclicking update button
-     const [newTitle, updtnewTitle]=useState('');
-     const [newNote, updtnewNote]=useState('');
-     
+
      
        //Adding data to an empty array i.e tododata(below)
      const [data, setData]=useState([]);
     
-    const[noteid , editnoteid]=useState('');
+    
 const makeChanges=()=>{
 	//Adding an object to updateNote useEffect
 	const tododata={
@@ -91,7 +89,7 @@ setData(updateNotie);
   </div>
     <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"  placeholder="Add note" value={note} onChange={(e)=> updateNote(e.target.value)}></textarea>
   </div>
-  <AddCircleIcon style={btnstyle} onClick={makeChanges}/>
+<AddCircleIcon style={btnstyle} onClick={makeChanges}/>
   
 
 
