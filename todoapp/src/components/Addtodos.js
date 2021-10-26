@@ -9,9 +9,11 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 const btnstyle={
 fill:'#0d6efd',
 	fontSize:'4.1rem',
-	position:'fixed',
-	top:'85%',
+	position:'sticky',
+	bottom:'0px',
+
 	left:'78%',
+	
 	
 	zIndex:'1',
 	}
